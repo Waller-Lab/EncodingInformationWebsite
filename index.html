@@ -3,8 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
-  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+        content="Information-Driven Design of Imaging Systems.">
+
+<!-- Social media meta tags -->
+<meta property="og:title" content="Information-Driven Design of Imaging Systems">
+<meta property="og:description" 
+      content="A data-driven framework for evaluating and designing imaging systems using information theory.">
+<meta property="og:url" content="[Your website URL]">
+
+  <meta name="keywords" 
+      content="information theory, computational imaging, optical design, imaging systems, machine learning, optimization, microscopy, astronomy">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Information-Driven Design of Imaging Systems</title>
 
@@ -241,53 +249,45 @@
         <div class="columns is-centered">
           <div class="container is-max-desktop">
             <div class="content">
-              <h2 class="title is-3">Information Estimation Framework</h2>
+              <h2 class="title is-3 section-title">Information Estimation Framework</h2>
 
+              <!-- Overview -->
+              <!-- <h3 class="title is-4 has-text-primary mt-5 mb-3">The Basic Idea</h3> -->
               <div class="content has-text-justified">
-                <p>Our framework models encoders (i.e. imaging systems) as deterministic functions that map objects to images. Noisy versions of the images are captured on a detector. Using these noisy measurements and a characterization of the noise process, we estimate information in or to evaluate quality and guide design of better encoders.</p>
+                  <p>We model imaging systems (encoders) as functions that transform objects into images, which are then captured with noise by a detector. Using just these noisy measurements and knowledge of the noise characteristics, we can evaluate system quality and guide improvements.</p>
               </div>
-
               <div class="content has-text-centered">
-                <img src="static/images/info_estimation_overview.png" alt="Information Estimation Overview" style="width: 100%; margin-top: 15px; margin-bottom: 15px;">
+                  <img src="static/images/info_estimation_overview.png" alt="Information Estimation Overview" style="width: 100%; margin-top: 15px; margin-bottom: 15px;">
               </div>
 
-
+              <!-- Information and Noise -->
+              <!-- <h3 class="title is-4 has-text-primary mt-5 mb-3">Information & Noise</h3> -->
               <div class="content has-text-justified">
-                <p>Information quantifies the distinguishability of different objects in the presence of noise. As noise increases, it becomes harder to discern which object gave rise to a particular measurement, because multiple objects can plausibly produce the same noisy measurement. Correspondingly, the amount of information in the measurement decreases.</p>
-                </div>
-
+                  <p>Information measures how well we can distinguish different objects from noisy measurements. When noise increases, multiple objects could have produced the same measurement, making them harder to tell apart and reducing the information content.</p>
+              </div>
               <div class="content has-text-centered">
-    
-                <video id="info_intuition" autoplay="" muted="" loop="" playsinline="" height="100%">
-                  <source src="./static/videos/info_intuition.mp4" type="video/mp4">
-                </video>
-
-
-
-               <div class="content has-text-justified">
-                <p>To estimate information, we quantify the diversity of noisy measurements and then subtract away the amount of that diversity that arises from noise alone</p>
+                  <video id="info_intuition" autoplay="" muted="" loop="" playsinline="" height="100%">
+                      <source src="./static/videos/info_intuition.mp4" type="video/mp4">
+                  </video>
               </div>
 
-
-              <div class="content has-text-centered">
-                <video id="info_estimator" autoplay="" muted="" loop="" playsinline="" height="100%">
-                  <source src="./static/videos/info_estimator.mp4" type="video/mp4">
-                </video>
-              </div>
-
-
+              <!-- Estimation Method -->
+              <!-- <h3 class="title is-4 has-text-primary mt-5 mb-3">How We Estimate Information</h3> -->
               <div class="content has-text-justified">
-                <p>Mathematically, this can be written as the difference of two entropies:</p>
+                  <p>To estimate information, we measure the total variability in measurements and subtract out the portion caused by noise.</p>
               </div>
-    
               <div class="content has-text-centered">
-                <img src="static/images/entropies_decomposition.png" alt="Decomposition of mutual informaiton" style="width: 60%; margin-top: 15px; margin-bottom: 15px;">
+                  <video id="info_estimator" autoplay="" muted="" loop="" playsinline="" height="100%">
+                      <source src="./static/videos/info_estimator.mp4" type="video/mp4">
+                  </video>
               </div>
-      
 
+              <!-- Mathematical Framework -->
+              <!-- <h3 class="title is-4 has-text-primary mt-5 mb-3">Mathematical framework</h3> -->
               <div class="content has-text-justified">
-                <p>These entropies can be expressed mathematically in terms of two key probability distributions:</p>
+                  <p>These quantities depend on two key probability distributions:</p>
               </div>
+
               
               <div class="content has-text-centered">
                 <img src="static/images/entropies_expectations.png" alt="Entropies as expectations" style="width: 60%; margin-top: 15px; margin-bottom: 15px;">
@@ -295,17 +295,18 @@
       
               
               <div class="content has-text-justified">
-                <p>For many imaging problems, a noise model $\color{#189EE8}{p(\mathbf{y} \mid \mathbf{x})}$ is known (e.g. Poisson shot noise) or can be easily measured. 
-                </p>
-
                 <p>
-                $\color{#38AD07}{p(\mathbf{y})}$ is more challenging because its structure may be complex is determined by both the objects being imaged and the encoder. We take a data-driven approach in which we learn the parameters of a model $\color{#38AD07}{p_\theta(\mathbf{y})}$ from a dataset of measurements.</p>
+                  For most imaging systems, we know or can measure the noise distribution $\color{#189EE8}{p(\mathbf{y} \mid \mathbf{x})}$. For example, the random arrival times of photons are known to follow a Poisson distribution. This lets us directly calculate $\color{#189EE8}{H(\mathbf{Y} \mid \mathbf{X})}$.
+              </p>
 
+              <p>
+                  The measurement distribution $\color{#38AD07}{p(\mathbf{y})}$ is trickier - it depends on both the objects and the imaging system itself. We learn this distribution from data by fitting a model $\color{#38AD07}{p_\theta(\mathbf{y})}$ to a dataset of measurements.
+              </p>
 
-                      <p>
-                        TODO: this allows us to estaimte entrpiy by upper bounding it
-                  Thus we can easily compare different models because the lowest estimate is most accurate
-                </p>
+              <p>
+                  Our approach provides an upper bound on the true information content. Since any estimate we compute will be higher than the true value, we can compare different models by choosing the one that gives the lowest estimate.
+              </p>
+
               </div>
 
 
@@ -331,18 +332,16 @@
         <div class="columns is-centered">
           <div class="container is-max-desktop">
             <div class="content">
-              <h2 class="title is-3">Applications of Information Estimation</h2>
+              <h2 class="title is-3 section-title">Applications of Information Estimation</h2>
 
               <div class="content has-text-justified">
                 <p>
-                  (TODOOOOO)
-                  Information estimation applies to lots of stuff
-                  We tested it on this stuff
+                We tested our information estimation framework across diverse imaging applications. Not only did it match traditional evaluation methods, but it did so without requiring complex reconstruction algorithms or ground truth data. Higher-information measurements consistently produced better results across all tasks: reconstructing color photos, imaging black holes with radio telescopes, capturing scenes with lensless cameras, and analyzing cells under a microscope. This validates our framework as a simpler, faster, and more universal approach to evaluating imaging systems.
                 </p>
               </div>
 
               <div class="content has-text-centered">
-                <img src="static/images/applications_figure.png" alt="Applications of Information Estimation" style="width: 100%; margin-top: 15px; margin-bottom: 100px;">
+                <img src="static/images/applications_figure.png" alt="Applications of Information Estimation" style="width: 100%; margin-top: 15px; margin-bottom: 15px;">
               </div>
             </div>
           </div>
@@ -355,12 +354,11 @@
         <div class="columns is-centered">
           <div class="container is-max-desktop">
             <div class="content">
-              <h2 class="title is-3">Automating Information-Driven Design with IDEAL</h2>
+              <h2 class="title is-3 section-title">Automating Information-Driven Design with IDEAL</h2>
 
               <div class="content has-text-justified">
                 <p>
-                  (TODOOOOO)
-                  
+                 Information content can do more than evaluate existing systems—it can guide the design of better ones. Our Information-Driven Encoder Analysis Learning (IDEAL) method automatically optimizes imaging system parameters to maximize information capture. Unlike traditional approaches that require training complex image reconstruction algorithms, IDEAL directly optimizes the imaging system using only the measurement information content.
                 </p>
               </div>
 
@@ -390,17 +388,11 @@
 </section>
 
 
-<footer class="footer">
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-          <p>
-            This website template was copied from <a href="https://nerfies.github.io/">Nerfies</a>
-          </p>
-        </div>
-      </div>
-    </div>
+<footer class="footer py-2">
+  <div class="content has-text-centered">
+    <p class="mb-0">
+      Website template from <a href="https://nerfies.github.io/">Nerfies</a>
+    </p>
   </div>
 </footer>
 

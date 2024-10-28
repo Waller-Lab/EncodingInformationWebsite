@@ -3,6 +3,10 @@ body {
 }
 
 
+.section-title {
+    margin-top: 4rem;  /* Adjust this value as needed */
+}
+
 .footer .icon-link {
     font-size: 25px;
     color: #000;
