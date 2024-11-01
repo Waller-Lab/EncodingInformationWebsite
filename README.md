@@ -1,6 +1,6 @@
 # Information-Driven Design of Imaging Systems
 
-This is the repository that contains source code for the [Information-Driven Design of Imaging Systems website](https://waller-lab.github.io/encodinginformation/).
+This is the repository that contains source code for the [Information-Driven Design of Imaging Systems website](https://waller-lab.github.io/EncodingInformationWebsite/).
 
 
 This website is adapted from the [Nerfies website](https://nerfies.github.io), which is licensed under:
