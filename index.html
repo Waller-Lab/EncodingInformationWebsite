@@ -60,6 +60,14 @@
         });
     </script>
 
+<!-- Fix autopla on mobile -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('video').forEach(video => {
+            video.play().catch(error => console.log('Autoplay failed:', error));
+        });
+    });
+</script>
 
 </head>
 <body>
