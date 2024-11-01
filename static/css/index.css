@@ -3,6 +3,48 @@ body {
 }
 
 
+/* Responsive image handling */
+.image.is-full-width {
+  max-width: 100%;
+  height: auto;
+  margin: 15px auto;
+}
+
+/* Responsive video handling */
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Mobile-specific adjustments */
+@media screen and (max-width: 768px) {
+  .section {
+    padding: 1.5rem 1rem;
+  }
+  
+  .container {
+    margin: 0 auto;
+  }
+  
+  /* Ensure content doesn't overflow on mobile */
+  .content {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+  
+  /* Handle pre/code blocks on mobile */
+  pre {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+  
+  /* Adjust spacing for mobile */
+  .column.is-four-fifths {
+    padding: 0.75rem;
+  }
+}
+
+
 .section-title {
     margin-top: 4rem;  /* Adjust this value as needed */
 }
