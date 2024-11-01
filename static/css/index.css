@@ -17,17 +17,6 @@ body {
 }
 
 
-@-moz-document url-prefix() {  /* Firefox-specific */
-  @media (max-width: 768px) {
-    video {
-      cursor: pointer;
-      /* Firefox might need explicit display property */
-      display: block;
-    }
-  }
-}
-
-
 .section-title {
     margin-top: 4rem;  /* Adjust this value as needed */
 }
