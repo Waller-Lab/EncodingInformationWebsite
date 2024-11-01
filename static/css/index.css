@@ -2,6 +2,7 @@ body {
   font-family: 'Noto Sans', sans-serif;
 }
 
+/* Somehow this makes videos work on chrome mobile */
 @media (max-width: 768px) {  /* mobile screens */
   video {
     cursor: pointer;
@@ -14,6 +15,18 @@ body {
     transform: translate(-50%, -50%);
   }
 }
+
+
+@-moz-document url-prefix() {  /* Firefox-specific */
+  @media (max-width: 768px) {
+    video {
+      cursor: pointer;
+      /* Firefox might need explicit display property */
+      display: block;
+    }
+  }
+}
+
 
 .section-title {
     margin-top: 4rem;  /* Adjust this value as needed */
