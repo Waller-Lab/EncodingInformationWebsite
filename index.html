@@ -173,7 +173,7 @@
                 </a>
               </span>
               <!-- Video Link. -->
-              <span class="link-block">
+         <!--      <span class="link-block">
                 <a href="https://www.youtube.com/watch?v=2bSnbygpeaI"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
@@ -181,7 +181,7 @@
                   </span>
                   <span>Video</span>
                 </a>
-              </span>
+              </span> -->
               <!-- Code Link. -->
               <span class="link-block">
                 <a href="https://github.com/Waller-Lab/EncodingInformation"
@@ -222,11 +222,11 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Most modern imaging systems process the data they capture computationally. As a result, what matters is not how measurements appear visually, but how much information they contain. Information theory provides mathematical tools to quantify this; however, it has found limited use in imaging system design due to the challenge of handling the complexity of real-world measurements while remaining practical enough for widespread use. 
+            Imaging systems have traditionally been designed to mimic the human eye and produce visually interpretable measurements. Modern imaging systems, however, process raw measurements computationally before or instead of human viewing. As a result, the information content of raw measurements matters more than their visual interpretability. Despite the importance of measurement information content, current approaches for evaluating imaging system performance do not quantify it: they instead either use alternative metrics that assess specific aspects of measurement quality or assess measurements indirectly with performance on secondary tasks.
           </p>
 
           <p>
-           We introduce a data-driven approach for estimating the information content of imaging system measurements in order to evaluate system performance and optimize designs. Our framework requires only a dataset of experimental measurements and a means for noise characterization, enabling its use in real systems without ground truth data. We validate that these information estimates reliably predict system performance across diverse imaging modalities, including color photography, radio astronomy, lensless imaging, and label-free microscopy. We further introduce an optimization technique called Information-Driven Encoder Analysis Learning (IDEAL) for designing imaging systems that maximize information capture. This work unlocks information theory as a powerful, practical tool for analyzing and designing imaging systems across a broad range of applications.
+           We developed the theoretical foundations and a practical method to directly quantify mutual information between noisy measurements and unknown objects. By fitting probabilistic models to measurements and their noise characteristics, our method estimates information by upper bounding its true value. By applying gradient-based optimization to these estimates, we also developed a technique for designing imaging systems called Information-Driven Encoder Analysis Learning (IDEAL). Our information estimates accurately captured system performance differences across four imaging domains (color photography, radio astronomy, lensless imaging, and microscopy). Systems designed with IDEAL matched the performance of those designed with end-to-end optimization, the prevailing approach that jointly optimizes hardware and image processing algorithms. These results establish mutual information as a universal performance metric for imaging systems that enables both computationally efficient design optimization and evaluation in real-world conditions.
         </p>
         </div>
       </div>
@@ -241,11 +241,13 @@
     <!-- Paper video. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Video</h2>
+        <h2 class="title is-3">Summary</h2>
 <!--         <div class="publication-video">
           <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
                   frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div> -->
+
+
 
 
 <div style="padding:56.25% 0 0 0;position:relative;">
@@ -266,6 +268,35 @@
   </div>
 </section>
 
+
+<section>
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="container is-max-desktop">
+            <div class="content">
+              <h2 class="title is-3 section-title">Background</h2>
+
+          <div class="content has-text-justified">
+              <p>What is information theory and how does it apply to imaging systems?</p>
+          </div>
+
+        <div style="padding:56.25% 0 0 0;position:relative;">
+            <iframe 
+                src="https://player.vimeo.com/video/1134015993?title=0&byline=0&portrait=0&sidedock=0&controls=1&dnt=1" 
+                frameborder="0" 
+                allow="autoplay; fullscreen; picture-in-picture" 
+                style="position:absolute;top:0;left:0;width:100%;height:100%;" 
+                title="Information-driven design of imaging systems">
+            </iframe>
+        </div>
+<script src="https://player.vimeo.com/api/player.js"></script>
+
+
+      </div>
+    </div>
+    <!--/ Paper video. -->
+  </div>
+</section>
 
 
 
