@@ -222,12 +222,19 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Imaging systems have traditionally been designed to mimic the human eye and produce visually interpretable measurements. Modern imaging systems, however, process raw measurements computationally before or instead of human viewing. As a result, the information content of raw measurements matters more than their visual interpretability. Despite the importance of measurement information content, current approaches for evaluating imaging system performance do not quantify it: they instead either use alternative metrics that assess specific aspects of measurement quality or assess measurements indirectly with performance on secondary tasks.
+            Imaging systems have traditionally been designed to mimic the human eye and produce visually interpretable measurements. Modern imaging systems, however, process raw measurements computationally before or instead of human viewing. As a result, the information content of raw measurements is more important than their visual interpretability. Despite its importance, current approaches for evaluating imaging system performance do not quantify information: they instead either use alternative metrics that assess specific aspects of measurement quality or assess measurements indirectly through performance on secondary tasks.
           </p>
 
           <p>
-           We developed the theoretical foundations and a practical method to directly quantify mutual information between noisy measurements and unknown objects. By fitting probabilistic models to measurements and their noise characteristics, our method estimates information by upper bounding its true value. By applying gradient-based optimization to these estimates, we also developed a technique for designing imaging systems called Information-Driven Encoder Analysis Learning (IDEAL). Our information estimates accurately captured system performance differences across four imaging domains (color photography, radio astronomy, lensless imaging, and microscopy). Systems designed with IDEAL matched the performance of those designed with end-to-end optimization, the prevailing approach that jointly optimizes hardware and image processing algorithms. These results establish mutual information as a universal performance metric for imaging systems that enables both computationally efficient design optimization and evaluation in real-world conditions.
-        </p>
+            We developed theoretical foundations and a practical method to directly quantify mutual information between noisy measurements and unknown objects. By fitting a probabilistic model to a dataset of measurements and leveraging known noise physics, our method can estimate how much object information imaging systems encode. 
+
+            We demonstrated that our method is:
+          </p>
+          <ul>
+            <li><b>Versatile:</b> works across diverse imaging systems such as cameras, microscopes, and telescopes</li>
+            <li><b>Field-deployable:</b> requires only readily available noisy measurements</li>
+            <li><b>Efficient:</b> enables gradient-based optimization of imaging system designs using IDEAL (Information-Driven Encoder Analysis Learning). IDEAL matches the performance of the prevailing end-to-end approach that jointly optimizes hardware and image reconstruction, while avoiding its memory requirements and optimization challenges.</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -269,33 +276,34 @@
 </section>
 
 
-<section>
+<section class="section">
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="container is-max-desktop">
             <div class="content">
               <h2 class="title is-3 section-title">Background</h2>
-
-          <div class="content has-text-justified">
-              <p>What is information theory and how does it apply to imaging systems?</p>
+              <div class="content has-text-justified">
+                <p>What is information theory and how does it apply to imaging systems?</p>
+              </div>
+              
+              <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                  <div style="padding:56.25% 0 0 0;position:relative;">
+                      <iframe 
+                          src="https://player.vimeo.com/video/1134015993?title=0&byline=0&portrait=0&sidedock=0&controls=1&dnt=1" 
+                          frameborder="0" 
+                          allow="autoplay; fullscreen; picture-in-picture" 
+                          style="position:absolute;top:0;left:0;width:100%;height:100%;" 
+                          title="Information-driven design of imaging systems">
+                      </iframe>
+                  </div>
+                  <script src="https://player.vimeo.com/api/player.js"></script>
+                </div>
+              </div>
+            </div>
           </div>
-
-        <div style="padding:56.25% 0 0 0;position:relative;">
-            <iframe 
-                src="https://player.vimeo.com/video/1134015993?title=0&byline=0&portrait=0&sidedock=0&controls=1&dnt=1" 
-                frameborder="0" 
-                allow="autoplay; fullscreen; picture-in-picture" 
-                style="position:absolute;top:0;left:0;width:100%;height:100%;" 
-                title="Information-driven design of imaging systems">
-            </iframe>
         </div>
-<script src="https://player.vimeo.com/api/player.js"></script>
-
-
       </div>
-    </div>
-    <!--/ Paper video. -->
-  </div>
 </section>
 
 
@@ -306,7 +314,7 @@
         <div class="columns is-centered">
           <div class="container is-max-desktop">
             <div class="content">
-              <h2 class="title is-3 section-title">Information Estimation Framework</h2>
+              <h2 class="title is-3 section-title">Mathematical Framework</h2>
 
     
               <div class="content has-text-justified">
@@ -356,7 +364,7 @@
 
               
               <div class="content has-text-centered">
-                <img src="static/images/entropies_expectations.png" alt="Entropies as expectations" style="width: 95%; max-width: 400px;
+                <img src="static/images/entropies_expectations.png" alt="Entropies as expectations" style="width: 95%; max-width: 500px;
 
                 margin-top: 15px; margin-bottom: 15px;">
               </div>
@@ -372,7 +380,7 @@
               </p>
 
               <p>
-                  Our approach provides an upper bound on the true information content. Since any estimate we compute will be higher than the true value, we can compare different models by choosing the one that gives the lowest estimate.
+                  Our approach provides an upper bound on the true information content. Since any estimate will be higher than the true value, different models can be compared by choosing the one that gives the lowest estimate.
               </p>
 
               </div>
@@ -401,16 +409,16 @@
         <div class="columns is-centered">
           <div class="container is-max-desktop">
             <div class="content">
-              <h2 class="title is-3 section-title">Applications of Information Estimation</h2>
+              <h2 class="title is-3 section-title">Validation Across Imaging Domains</h2>
 
               <div class="content has-text-justified">
                 <p>
-                We tested our information estimation framework across diverse imaging applications. Not only did it match traditional evaluation methods, but it did so without requiring complex reconstruction algorithms or ground truth data. Higher-information measurements consistently produced better results across all tasks: reconstructing color photos, imaging black holes with radio telescopes, capturing scenes with lensless cameras, and analyzing cells under a microscope. This validates our framework as a simpler, faster, and more universal approach to evaluating imaging systems.
+                We tested our information estimation framework across diverse imaging applications. It matched traditional decoder-based evaluation, without their complex reconstruction algorithms or ground truth data requirements. Higher-information measurements consistently produced better results across all tasks: reconstructing color photos, imaging black holes with radio telescopes, capturing scenes with lensless cameras, and predicting the phenotypic characteristics of cells from microscopy images. This validates our framework as a simpler, faster, and more versatile approach to evaluating imaging systems.
                 </p>
               </div>
 
               <div class="content has-text-centered">
-                <img src="static/images/applications_figure.png" alt="Applications of Information Estimation" style="width: 100%; margin-top: 15px; margin-bottom: 15px;">
+                <img src="static/images/applications_figure.png" alt="Validation Across Imaging Domains" style="width: 100%; margin-top: 15px; margin-bottom: 15px;">
               </div>
             </div>
           </div>
@@ -436,7 +444,7 @@
 
               <div class="content has-text-justified">
                 <p>
-                  The video below shows a filter for color photography being optimized to maximize the information captured in its measurements.
+                  For example, below a color photography filter is designed using gradient ascent on information estimates.
                 </p>
               </div>
 
@@ -447,12 +455,40 @@
                 </video>
               </div>
 
+              <div class="content has-text-justified">
+                <p>
+                  IDEAL matched the performance of end-to-end design, the prevailing approach that jointly trains hardware and image reconstruction algorithms. However, IDEAL avoids end-to-end's memory and compute requirements the potential for vanishing gradients that arise from backpropagating through complex reconstruction algorithms.
+                </p>
+              </div>
+
+              <div class="content has-text-centered">
+                <img src="static/images/ideal_perf.png" alt="IDEAL performance comparison with end-to-end optimization" style="width: 70%; max-width: 400px; margin-top: 15px; margin-bottom: 15px;">
+              </div>
+
             </div>
           </div>
         </div>
       </div>
     </section>
 
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="container is-max-desktop">
+        <div class="content">
+          <h2 class="title is-3 section-title">Follow-on Work</h2>
+
+          <ul>
+            <li><a href="https://arxiv.org/abs/2507.07789" target="_blank"><b>IDEAL-IO:</b></a>Further study on IDEAL that identifies areas for improvement and compares its performance to end-to-end design across a several imaging domains.</li>
+            <li><a href="https://arxiv.org/abs/2506.08513" target="_blank"><b>Designing lensless imaging systems for maximum information capture:</b></a> Application of information estimation to discovery design principles based on object sparsity for lensless imaging </li>
+            <li><a href="https://lakabuli.github.io/posts/bayesian_information_optimization.html" target="_blank"><b>Bayesian optimization for non-differentiable systems:</b></a> Information-driven design on other combinatorial design problems where gradient-based methods cannot apply</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 
 <section class="section" id="BibTeX">
