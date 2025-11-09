@@ -14,6 +14,11 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
   }
+  
+  /* Fix text justification on mobile */
+  .has-text-justified {
+    text-align: left !important;
+  }
 }
 
 
