@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="A Minimal Model of the Structure of Information Encoding">
+
+<meta property="og:title" content="A Minimal Model of the Structure of Information Encoding">
+<meta property="og:description"
+      content="A 1D model system revealing how physical constraints shape the geometry of information encoding.">
+
+  <meta name="keywords"
+      content="information theory, signal encoding, Shannon geometry, mutual information, imaging systems, point spread function, bandwidth, SNR">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A Minimal Model of the Structure of Information Encoding</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          tex2jax: {
+              inlineMath: [['$','$'], ['\\(','\\)']],
+              displayMath: [['$$','$$'], ['\\[','\\]']],
+              processEscapes: true
+          }
+      });
+  </script>
+
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-3 publication-title">A Minimal Model of the Structure of Information Encoding</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+                <a href="https://henrypinkard.github.io/">Henry Pinkard</a>,
+            </span>
+            <span class="author-block">
+              <a href="https://Lakabuli.github.io/">Leyla Kabuli</a>,
+            </span>
+            <span class="author-block">
+                <a href="https://emarkley.github.io/">Eric Markley</a>,
+            </span>
+            <span class="author-block">
+                <a href="static/images/tiff_cat.jpg">Tiffany Chien</a>,
+            </span>
+            <span class="author-block">
+                <a href="https://people.eecs.berkeley.edu/~jiantao/">Jiantao Jiao</a>,
+            </span>
+            <span class="author-block">
+                <a href="https://www2.eecs.berkeley.edu/Faculty/Homepages/waller.html">Laura Waller</a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Intro -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="container is-max-desktop">
+        <div class="content has-text-justified">
+          <p>
+            How many distinguishable signals can you pack into a finite number of dimensions when noise corrupts every measurement? Shannon showed that reliable communication is equivalent to packing non-overlapping noise spheres into signal space. However, real encoding systems obey physical constraints that classical channel theory does not address: bandwidth limits, nonnegativity, energy conservation. These constraints limit the information that measurements can carry.
+          </p>
+          <p>
+            To isolate this structure, we study a 1D periodic domain with convolution-based encoding. It is low-dimensional enough to visualize and exhaustively compute, but rich enough to exhibit the constraints that govern real systems. We define the model, show how physical constraints limit the encoder's range, quantify the resulting information loss and its scaling with SNR, bandwidth, and sampling, and finally characterize the tradeoff between resolution and noise in two-point discrimination.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Section 1: The 1D model system -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="container is-max-desktop">
+        <div class="content">
+          <h2 class="title is-4 section-title">The 1D Model System</h2>
+          <div class="content has-text-justified">
+            <p>
+              Input signals (objects) live on a 1D periodic domain. Each is encoded by a bandlimited, nonnegative convolution kernel (a point spread function), as shown in (a). The encoded signal can be represented as a point in a finite-dimensional space. Nonnegativity and energy conservation confine these points to a simplex. Bandlimitedness further restricts the reachable region: convolution with a finite-bandwidth kernel cannot concentrate all energy at a single point, so the valid signals (green in (b)) occupy only a subset of that simplex. The question: how well can the encoder spread signals through this space so they remain distinguishable after noise?
+            </p>
+          </div>
+          <div class="content has-text-centered">
+            <img src="static/images/formalism/1d_conv_model.png" alt="1D convolution model system and output signal space" style="width: 100%; margin-top: 15px; margin-bottom: 15px;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Section 2: Physical constraints limit encoder range -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="container is-max-desktop">
+        <div class="content">
+          <h2 class="title is-4 section-title">Physical Constraints Limit the Encoder's Range</h2>
+          <div class="content has-text-justified">
+            <p>
+              The encoder is not free to map inputs to arbitrary points in signal space. For example, a single lens cannot simultaneously make a dim scene appear bright on a sensor and a bright scene appear dim. The kernel applies the same transformation to every input, so physical constraints restrict the encoder's range, and those restrictions depend on the input itself.
+            </p>
+            <p>
+              The convolution kernel can only disperse energy, not reconcentrate it. A concentrated input (a single delta function) gives the encoder maximum freedom: it can produce a broad range of output signals by choosing different kernels. A dispersed input (many delta functions) constrains the encoder to a smaller region of output space, even at the same total energy.
+            </p>
+            <p>
+              For each of three input types below (two deltas, one delta, eight deltas), the colored region on the right shows the set of encoded signals reachable by <em>any</em> kernel. As the input becomes more dispersed, the reachable region shrinks.
+            </p>
+          </div>
+          <div class="content has-text-centered">
+            <img src="static/images/formalism/1d_object_dependent_encoder_range.png" alt="Source-dependent reachable region of signal space" style="width: 100%; margin-top: 15px; margin-bottom: 15px;">
+          </div>
+          <div class="content has-text-justified">
+            <p>
+              The boundary of each reachable region was found by optimization (gradient descent toward target points in signal space), so we cannot guarantee global optimality for every target. To rule out the possibility that the optimizer is missing reachable parts of the space, we took two approaches. First, we repeated the optimization from many random initializations and consistently found the same boundaries. Second, we randomly sampled points in the low-dimensional signal space, verified that each sample met the energy constraints for physical realizability, and then optimized toward it. In all cases the optimizer successfully reached the target.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Section 3: Encoder inefficiency -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="container is-max-desktop">
+        <div class="content">
+          <h2 class="title is-4 section-title">Encoder Inefficiency</h2>
+          <div class="content has-text-justified">
+            <p>
+              The constraints above have a direct consequence: the encoder cannot produce the information-theoretically optimal distribution of signals (the channel capacity). We call the resulting information loss <em>encoder inefficiency</em>.
+            </p>
+            <p>
+              Because the kernel can only spread energy, not rearrange it freely, the distribution of encoded signals is always more constrained than the optimal one.
+            </p>
+            <p>
+              Under additive Gaussian noise, the optimal distribution is uniform over the output space. On the left below, this optimal distribution (green, top) fills the space uniformly (it appears nonuniform because this is a 2D projection of a higher-dimensional space). In contrast, the best encoded distribution (blue, bottom) is concentrated in a subregion. On the right, the information gap grows with the number of degrees of freedom (the space-bandwidth product), because the physical constraints become increasingly restrictive in higher dimensions.
+            </p>
+          </div>
+          <div class="content has-text-centered">
+            <img src="static/images/formalism/encoder_inefficiency_1d.png" alt="Encoder inefficiency: gap between optimal and physically achievable information" style="width: 100%; margin-top: 15px; margin-bottom: 15px;">
+          </div>
+          <div class="content has-text-justified">
+            <p>
+              The optimal encoder here was found by maximizing mutual information under a Gaussian approximation (using the IDEAL framework from the <a href="index.html">paper</a>). This approximation may not be tight, so the specific value of encoder inefficiency could change with a better optimizer. But encoder inefficiency itself must exist: no physical encoder can freely rearrange where energy goes. This is a first-pass estimate. Our later work (<a href="https://arxiv.org/abs/2507.07789" target="_blank">IDEAL-IO</a>) explored a PixelCNN-based approach that may produce more accurate estimates.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Section 4: Fundamental tradeoffs -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="container is-max-desktop">
+        <div class="content">
+          <h2 class="title is-4 section-title">Fundamental Tradeoffs: SNR, Degrees of Freedom, Sampling</h2>
+          <div class="content has-text-justified">
+            <p>
+              Given that physical constraints limit both the encoder's range and the distribution of encoded signals, how does the encoded information scale with basic system parameters? We vary three parameters independently, each across several input signal distributions (a), and measure the effect on mutual information (b):
+            </p>
+            <ul>
+              <li><strong>Signal-to-noise ratio</strong> (left): Information grows logarithmically with SNR. Sparser sources (deltas) encode more efficiently than dense ones (white noise) at every SNR level.</li>
+              <li><strong>Degrees of freedom</strong> (center): Information grows approximately linearly with bandwidth. Rates are source-dependent, with sparser sources benefiting more from additional dimensions.</li>
+              <li><strong>Sampling density</strong> (right): Oversampling beyond the Nyquist rate still increases information, but with diminishing returns. Higher SNR amplifies the benefit of oversampling.</li>
+            </ul>
+          </div>
+          <div class="content has-text-centered">
+            <img src="static/images/formalism/1d_SNR_and_bandwidth.png" alt="Effects of SNR, bandwidth, and sampling on encoded information" style="width: 100%; margin-top: 15px; margin-bottom: 15px;">
+          </div>
+          <div class="content has-text-justified">
+            <p>
+              These scaling relationships are empirical observations from this physically constrained 1D model. They are consistent with classical results for unconstrained channels, but we have not proven them analytically for the constrained case.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Section 5: Two-point resolution -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="container is-max-desktop">
+        <div class="content">
+          <h2 class="title is-4 section-title">Example: Two-Point Resolution of an Imaging System</h2>
+          <div class="content has-text-justified">
+            <p>
+              The preceding sections treated encoding in a general sense. Here we focus on a specific classic problem in optics: two-point resolution. Given a noisy measurement, determine whether the source is one point or two closely spaced points.
+            </p>
+            <p>
+              In this simple case, we need exactly 1 bit of information to distinguish the two hypotheses, and we can analytically compute the relationship between information and task performance. The input is convolved with a kernel, captured with noise, and fed to an optimal binary classifier (a). The classifier's accuracy is a monotonic function of mutual information, rising from chance (0.5) at zero information to perfect (1.0) at one bit (b).
+            </p>
+            <p>
+              The heatmap in (c) shows how resolution and signal-to-noise ratio jointly determine encoded information. Iso-information contours trace curves through this space: the same information can come from high resolution with high noise, or low resolution with low noise. The insets show how measurement distributions change across regimes. Resolution separates the two signal peaks; SNR controls how well that separation survives noise.
+            </p>
+          </div>
+          <div class="content has-text-centered">
+            <img src="static/images/formalism/2_point_resolution.png" alt="Two-point resolution: probabilistic model, classifier accuracy vs. information, and SNR-resolution tradeoff" style="width: 100%; margin-top: 15px; margin-bottom: 15px;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<footer class="footer py-2">
+  <div class="content has-text-centered">
+    <p class="mb-0">
+      Based on Sections S1.2&ndash;S1.3 of
+      <a href="index.html"><em>Information-Driven Design of Imaging Systems</em></a>
+    </p>
+    <p class="mb-0">
+      Website template from <a href="https://nerfies.github.io/">Nerfies</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
