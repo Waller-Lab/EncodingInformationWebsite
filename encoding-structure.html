@@ -82,13 +82,13 @@
       <div class="container is-max-desktop">
         <div class="content has-text-justified">
           <p>
-            How many signals can be reliably encoded into finite dimensions in the presence of noise, interference, or discretization? With no restriction on the encoder, this reduces to packing non-overlapping noise spheres into signal space. In practice, many encoders cannot produce arbitrary signals, thereby limiting the information that signals can carry.
+            How many signals can be reliably encoded into finite dimensions in the presence of noise, interference, or discretization? For an unconstrained encoder, the answer comes from packing as many non-overlapping noise spheres into signal space as possible. But in practice, many encoders cannot produce arbitrary signals, preventing them from reaching this bound.
           </p>
           <p>
-            Here we study a toy model of this phenomenon: convolutional encoding of 1D periodic signals. These signals are low-dimensional enough to exhaustively compute and visualize, but rich enough to exhibit the constraints that govern real systems. We define the model, show how constraints limit the encoder's range, and quantify the resulting information gap, which grows with dimensionality. As one concrete application, we characterize two-point resolution, a classic problem in optics, showing how resolution and noise trade off along contours of equal information.
+            Here we study a toy model of this phenomenon: convolutional encoding of 1D periodic signals. These signals are low-dimensional enough to exhaustively compute and visualize, but rich enough to exhibit the constraints that govern real systems. We define the model, show how constraints limit the encoder's range, and quantify the gap between the constrained encoder's signals and the optimal set of signals. This gap grows with dimensionality. Finally, we apply this framework to two-point resolution, a classic problem in optics, showing how resolution and noise trade off along contours of equal information.
           </p>
           <p>
-            The interaction between the signals being encoded and the constraints of the encoder determines the most efficient geometry for packing signals in the space to preserve information. These findings provide a blueprint for empirically studying these phenomena across a wide range of information encoding problems.
+            These results demonstrate how the object and its encoding constraints together shape signal geometry, and thus how much information is preserved. These findings provide a blueprint for empirically studying these phenomena across a wide range of information encoding problems.
           </p>
         </div>
       </div>
