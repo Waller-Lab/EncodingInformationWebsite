@@ -106,7 +106,10 @@
           <h2 class="title is-4 section-title">The 1D Model System</h2>
           <div class="content has-text-justified">
             <p>
-              How well can an encoder distribute signals in a space so that they remain distinguishable after distortion? To answer this, we define a minimal model. Objects live on a 1D periodic domain. Each is encoded into a signal by a bandlimited, nonnegative convolution kernel (a point spread function), as shown in <a href="#fig-model"><strong>(a)</strong></a>. Integrating the encoded signal over sampling intervals yields a point in a finite-dimensional space, where each coordinate is the energy in one interval. These coordinates are nonnegative and sum to at most unit energy (the positive orthant of the L1 unit ball). Bandlimitedness further restricts the reachable region: convolution with a finite-bandwidth kernel cannot concentrate all energy at a single point, so the valid signals (green in <a href="#fig-model"><strong>(b)</strong></a>) occupy only a subset of this region.
+              How well can an encoder distribute signals in a space so that they remain distinguishable after distortion? To answer this, we define a minimal model. Objects live on a 1D periodic domain. Each is encoded into a signal by a bandlimited, nonnegative convolution kernel (a point spread function), as shown in <a href="#fig-model"><strong>(a)</strong></a>.
+            </p>
+            <p>
+              The encoding maps each object to a point in a constrained region of a finite-dimensional space. Integrating the encoded signal over sampling intervals yields one coordinate per interval. In physical systems like cameras, this quantity is energy (e.g. photon counts), so we use that term here. These coordinates are nonnegative and sum to at most unit energy (the positive orthant of the L1 unit ball). Bandlimitedness further restricts the reachable region: convolution with a finite-bandwidth kernel cannot concentrate all energy at a single point, so the valid signals (green in <a href="#fig-model"><strong>(b)</strong></a>) occupy only a subset of this region.
             </p>
           </div>
           <div class="content has-text-centered">
@@ -194,7 +197,7 @@
           <h2 class="title is-4 section-title">Fundamental Tradeoffs: SNR, Degrees of Freedom, Sampling</h2>
           <div class="content has-text-justified">
             <p>
-              Encoded information scales predictably with three system parameters. We vary SNR, bandwidth, and sampling density independently, each across several input signal distributions <a href="#fig-tradeoffs"><strong>(a)</strong></a>, and measure the effect on mutual information <a href="#fig-tradeoffs"><strong>(b)</strong></a>:
+              Encoded information scales predictably with three system parameters. We vary SNR, bandwidth, and sampling density independently, each across several object distributions <a href="#fig-tradeoffs"><strong>(a)</strong></a>, and measure the effect on mutual information <a href="#fig-tradeoffs"><strong>(b)</strong></a>:
             </p>
             <ul>
               <li><strong>Signal-to-noise ratio</strong> (left): Information grows logarithmically with SNR. Sparser sources (deltas) encode more efficiently than dense ones (white noise) at every SNR level.</li>
