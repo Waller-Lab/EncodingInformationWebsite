@@ -128,13 +128,13 @@
     <div class="columns is-centered">
       <div class="container is-max-desktop">
         <div class="content">
-          <h2 class="title is-4 section-title">Physical Constraints Limit the Encoder's Range</h2>
+          <h2 class="title is-4 section-title">Expressivity Constraints Limit the Encoder's Range</h2>
           <div class="content has-text-justified">
             <p>
-              The encoder is not free to map objects to arbitrary points in signal space. For example, a single lens cannot simultaneously make a dim scene appear bright on a sensor and a bright scene appear dim. The kernel applies the same transformation to every input, so physical constraints restrict the encoder's range, and those restrictions depend on the object itself.
+              The encoder is not free to map objects to arbitrary points in signal space. The kernel applies the same transformation to every object, so the encoder has limited expressivity, and its range depends on the object itself. In a physical system like a camera, this is concrete: a single lens cannot simultaneously make a dim scene appear bright and a bright scene appear dim.
             </p>
             <p>
-              The convolution kernel can only disperse energy, not reconcentrate it. A concentrated object (a single delta function) gives the encoder maximum freedom: it can produce a broad range of output signals by choosing different kernels. A dispersed object (many delta functions) constrains the encoder to a smaller region of output space, even at the same total energy.
+              Since the convolution kernel can only disperse energy, not reconcentrate it, a concentrated object (a single delta function) gives the encoder maximum freedom: it can produce a broad range of output signals by choosing different kernels. A dispersed object (many delta functions) constrains the encoder to a smaller region of output space, even at the same total energy.
             </p>
             <p>
               For each of three object types below (two deltas, one delta, eight deltas), the colored region on the right shows the set of encoded signals reachable by <em>any</em> kernel. As the object becomes more dispersed, the reachable region shrinks.
@@ -240,6 +240,28 @@
           </div>
           <div class="content has-text-centered">
             <img id="fig-resolution" src="static/images/formalism/2_point_resolution.png" alt="Two-point resolution: probabilistic model, classifier accuracy vs. information, and SNR-resolution tradeoff" style="width: 100%; margin-top: 15px; margin-bottom: 15px;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Conclusion -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="container is-max-desktop">
+        <div class="content">
+          <h2 class="title is-4 section-title">Beyond the Toy Model</h2>
+          <div class="content has-text-justified">
+            <p>
+              The results above were derived for a simple physical system: 1D convolution with bandlimited, nonnegative kernels. But the phenomena they reveal are not specific to imaging. Any system that encodes high-dimensional objects into finite-dimensional signals under constraints faces the same geometric problem: how the object and the encoder's expressivity together determine how well signals fill the space, and how much information survives.
+            </p>
+            <p>
+              Noise, interference, and discretization arise across a wide range of encoding systems, from communication channels to neural networks. Studying how these constraints shape signal geometry in other domains could reveal similar structure, and similar tradeoffs, to those found here.
+            </p>
           </div>
         </div>
       </div>
