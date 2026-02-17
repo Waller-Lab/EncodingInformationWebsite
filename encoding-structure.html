@@ -82,13 +82,13 @@
       <div class="container is-max-desktop">
         <div class="content has-text-justified">
           <p>
-            How many signals can be reliably encoded into finite dimensions in the presence of noise, interference, or discretization? For an unconstrained encoder, the answer comes from packing as many non-overlapping noise spheres into signal space as possible. But in practice, many encoders cannot produce arbitrary signals, preventing them from reaching this bound.
+            Cameras, microphones, and neural networks all encode high-dimensional objects into finite-dimensional signals. How many distinguishable signals, and thus how much information, can be reliably preserved in the presence of noise, interference, or discretization? For an unconstrained encoder with Gaussian noise, the answer comes from packing as many non-overlapping noise spheres into signal space as possible. But in practice, many encoders cannot produce arbitrary signals, preventing them from reaching this bound.
           </p>
           <p>
             Here we study a toy model of this phenomenon: convolutional encoding of 1D periodic signals. These signals are low-dimensional enough to exhaustively compute and visualize, but rich enough to exhibit the constraints that govern real systems. We define the model, show how constraints limit the encoder's range, and quantify the gap between the constrained encoder's signals and the optimal set of signals. This gap grows with dimensionality. Finally, we apply this framework to two-point resolution, a classic problem in optics, showing how resolution and noise trade off along contours of equal information.
           </p>
           <p>
-            These results demonstrate how the object and its encoding constraints together shape signal geometry, and thus how much information is preserved. These findings provide a blueprint for empirically studying these phenomena across a wide range of information encoding problems.
+            These results demonstrate how the object and its encoding constraints together shape signal geometry, and thus how much information is preserved, providing a blueprint for empirically studying these phenomena across a wide range of information encoding problems.
           </p>
         </div>
       </div>
@@ -106,7 +106,7 @@
           <h2 class="title is-4 section-title">The 1D Model System</h2>
           <div class="content has-text-justified">
             <p>
-              How well can an encoder distribute signals in a space so that they remain distinguishable after distortion? To answer this, we define a minimal model. Objects live on a 1D periodic domain. Each is encoded into a signal by a bandlimited, nonnegative convolution kernel (a point spread function), as shown in <a href="#fig-model"><strong>(a)</strong></a>. Integrating the encoded signal over sampling intervals yields a point in a finite-dimensional space, where each coordinate is the energy in one interval. These coordinates are nonnegative and sum to at most unit energy (the positive orthant of the L1 unit ball). Bandlimitedness further restricts the reachable region: convolution with a finite-bandwidth kernel cannot concentrate all energy at a single point, so the valid signals (green in <a href="#fig-model"><strong>(b)</strong></a>) occupy only a subset of that simplex.
+              How well can an encoder distribute signals in a space so that they remain distinguishable after distortion? To answer this, we define a minimal model. Objects live on a 1D periodic domain. Each is encoded into a signal by a bandlimited, nonnegative convolution kernel (a point spread function), as shown in <a href="#fig-model"><strong>(a)</strong></a>. Integrating the encoded signal over sampling intervals yields a point in a finite-dimensional space, where each coordinate is the energy in one interval. These coordinates are nonnegative and sum to at most unit energy (the positive orthant of the L1 unit ball). Bandlimitedness further restricts the reachable region: convolution with a finite-bandwidth kernel cannot concentrate all energy at a single point, so the valid signals (green in <a href="#fig-model"><strong>(b)</strong></a>) occupy only a subset of this region.
             </p>
           </div>
           <div class="content has-text-centered">
@@ -128,13 +128,13 @@
           <h2 class="title is-4 section-title">Physical Constraints Limit the Encoder's Range</h2>
           <div class="content has-text-justified">
             <p>
-              The encoder is not free to map inputs to arbitrary points in signal space. For example, a single lens cannot simultaneously make a dim scene appear bright on a sensor and a bright scene appear dim. The kernel applies the same transformation to every input, so physical constraints restrict the encoder's range, and those restrictions depend on the input itself.
+              The encoder is not free to map objects to arbitrary points in signal space. For example, a single lens cannot simultaneously make a dim scene appear bright on a sensor and a bright scene appear dim. The kernel applies the same transformation to every input, so physical constraints restrict the encoder's range, and those restrictions depend on the object itself.
             </p>
             <p>
-              The convolution kernel can only disperse energy, not reconcentrate it. A concentrated input (a single delta function) gives the encoder maximum freedom: it can produce a broad range of output signals by choosing different kernels. A dispersed input (many delta functions) constrains the encoder to a smaller region of output space, even at the same total energy.
+              The convolution kernel can only disperse energy, not reconcentrate it. A concentrated object (a single delta function) gives the encoder maximum freedom: it can produce a broad range of output signals by choosing different kernels. A dispersed object (many delta functions) constrains the encoder to a smaller region of output space, even at the same total energy.
             </p>
             <p>
-              For each of three input types below (two deltas, one delta, eight deltas), the colored region on the right shows the set of encoded signals reachable by <em>any</em> kernel. As the input becomes more dispersed, the reachable region shrinks.
+              For each of three object types below (two deltas, one delta, eight deltas), the colored region on the right shows the set of encoded signals reachable by <em>any</em> kernel. As the object becomes more dispersed, the reachable region shrinks.
             </p>
           </div>
           <div class="content has-text-centered">
@@ -161,7 +161,7 @@
           <h2 class="title is-4 section-title">Encoder Inefficiency</h2>
           <div class="content has-text-justified">
             <p>
-              The constraints above have a direct consequence: the encoder cannot produce the information-theoretically optimal distribution of signals (the channel capacity). We call the resulting information loss <em>encoder inefficiency</em>.
+              The constraints above have a direct consequence: the encoder cannot produce the distribution of signals that achieves the channel capacity. We call the resulting information loss <em>encoder inefficiency</em>.
             </p>
             <p>
               Under additive Gaussian noise, the optimal distribution is uniform over the output space. The optimal distribution (green, top left) fills the space uniformly (it appears nonuniform because this is a 2D projection of a higher-dimensional space). The best physically achievable distribution (blue, bottom left) is concentrated in a subregion.
@@ -229,7 +229,7 @@
               The preceding sections characterized encoding without specifying a task. Here we focus on a classic problem in optics: two-point resolution. Given a noisy signal, determine whether the source is one point or two closely spaced points.
             </p>
             <p>
-              In this simple case, we need exactly 1 bit of information to distinguish the two hypotheses, and we can analytically compute the relationship between information and task performance. The input is convolved with a kernel, captured with noise, and fed to an optimal binary classifier <a href="#fig-resolution"><strong>(a)</strong></a>. The classifier's accuracy is a monotonic function of mutual information, rising from chance (0.5) at zero information to perfect (1.0) at one bit <a href="#fig-resolution"><strong>(b)</strong></a>.
+              In this simple case, we need exactly 1 bit of information to distinguish the two hypotheses, and we can analytically compute the relationship between information and task performance. The object is convolved with a kernel, captured with noise, and fed to an optimal binary classifier <a href="#fig-resolution"><strong>(a)</strong></a>. The classifier's accuracy is a monotonic function of mutual information, rising from chance (0.5) at zero information to perfect (1.0) at one bit <a href="#fig-resolution"><strong>(b)</strong></a>.
             </p>
             <p>
               Resolution and SNR jointly determine encoded information <a href="#fig-resolution"><strong>(c)</strong></a>. Iso-information contours trace curves through this space: the same information can come from high resolution with high noise, or low resolution with low noise. The insets show how signal distributions change across regimes. Resolution separates the two signal peaks; SNR controls how well that separation survives noise.
